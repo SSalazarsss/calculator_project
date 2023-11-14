@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background: linear-gradient(217deg, rgba(101, 212, 244), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(101, 212, 244), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(114, 131, 243 ), rgba(31, 95, 255 ) 70.71%);
+  background-image: url(https://giffiles.alphacoders.com/791/79109.gif);
+  background-size: cover;
+}
+
+div.calculator {
+  font-size: 0;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+  background-image: url(https://data.whicdn.com/images/293719734/original.gif);
+  background-size: cover;
+/*   background-color: grey; */
+  width: 50vw;
+  height: 97vh;
+  border-radius: 35px;
+  box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  padding: 0.9%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-context: center;
+}
+
+input#display {
+  width: 25vw;
+  height: 5vh;
+  margin: auto;
+  text-align: center;
+}
+
+div.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2%;
+}
+
+div.parent {
+  margin-top: 2%;
+/*   border: 1px solid yellow; */
+  height: 80%;
+  box-sizing: border-box;
+  
+}
+div.p1 {
+  width: 60%;
+  float: left;
+  
+}
+div.p2 {
+  width: 40%;
+  float: right;
+}
+
+button.number-buttons {
+  height: 20%;
+  flex: 0 0 30%;
+  border-radius: 90px;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  font-size: 50px;
+  color: white;
+  font-family: "Libre Baskerville" ;
+}
+button.clear {
+  height: 20%;
+  flex: 0 0 30%;
+  border-radius: 90px;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  color: white;
+  font-size: 50px;
+   font-family: "Libre Baskerville" ;
+}
+
+button.number-buttons {
+  height: 20%;
+  flex: 0 0 30%;
+  border-radius: 90px;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  font-size: 50px;
+  color: white;
+  font-family: "Libre Baskerville" ;
+}
+button.operations {
+  height: 15%;
+  flex: 0 0 90%;
+  border-radius: 90px;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  color: white;
+  font-size: 50px;
+   font-family: "Libre Baskerville" ;
+}
+
+.calc-input {
+  width: 480px;
+  height:100px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  font-family: "Libre Baskerville" ;
+  color: white;
+  font-size: 60px;
+  border-radius: 50px;
+}
+    </style>
+</head>
+<body>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fuggles&family=Handjet:wght@800&family=Libre+Baskerville&family=Varela+Round&display=swap" rel="stylesheet">
+  
+<div class="calculator">
+  <div>
+  <input class="calc-input"></input>
+</div>
+
+  <div class="parent p1 flex">
+    <button class="number-buttons" type="button">1</button>
+    <button class="number-buttons" type="button">2</button>
+    <button class="number-buttons" type="button">3</button>
+    <button class="number-buttons" type="button">4</button>
+    <button class="number-buttons" type="button">5</button>
+    <button class="number-buttons" type="button">6</button>
+    <button class="number-buttons" type="button">7</button>
+    <button class="number-buttons" type="button">8</button>
+    <button class="number-buttons" type="button">9</button>
+    <button class="number-buttons" type="button">0</button>
+    
+    <button class="clear operations input-button" id="clear" type="button">clear</button>
+  </div>
+  
+  
+  <div class="parent p2 flex">
+    <button class="operations input-button" id="add" type="button">+</button>
+    <button class="operations input-button" id="subtract" type="button">-</button>
+    <button class="operations input-button" id="multiply" type="button">*</button>
+    <button class="operations input-button" id="divide" type="button">/</button>
+    <button class="operations input-button" id="equal" type="button">=</button>
+    
+    </div>
+  </div>
+</div>
+
+    <script>
+const calculator = document.getElementById("calculator");
+const resultDisplay = document.getElementById("display");
+const buttons1 = document.getElementById("buttons1");
+const clearButton = document.getElementById("clear");
+const equalButton = document.getElementById("equal");
+const addButton = document.getElementById("add");
+const minusButton = document.getElementById("subtract");
+const divideButton = document.getElementById("divide");
+const multiplyButton = document.getElementById("multiply");
+let maxLength = resultDisplay.getAttribute("maxLength");
+resultDisplay.value = "0";
+
+let tempNumber = null;
+let firstNumber = null;
+let secondNumber = null;
+let operation = null;
+let result = null;
+
+for (let i = 0; i < 10; i++) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.classList.add("number-button");
+  button.classList.add("input-button");
+  button.textContent = i;
+  button.setAttribute("data-value", i);
+  if (i === 0) {
+    button.style.order = 1;
+  }
+  buttons1.appendChild(button);
+}
+
+const numberButtons = document.querySelectorAll(".number-button");
+
+numberButtons.forEach((button, index) => {
+  let dataValue = parseInt(button.getAttribute("data-value"));
+
+  button.addEventListener("click", function (event) {
+    if (resultDisplay.value.length < maxLength) {
+      if (operation === null) {
+        if (firstNumber === null || firstNumber === 0) {
+          firstNumber = dataValue;
+        } else {
+          firstNumber = parseInt(firstNumber.toString().concat(dataValue));
+        }
+        resultDisplay.value = firstNumber.toString();
+      } else {
+        if (secondNumber === null || secondNumber === 0) {
+          secondNumber = dataValue;
+        } else {
+          secondNumber = parseInt(secondNumber.toString().concat(dataValue));
+        }
+        resultDisplay.value = secondNumber.toString();
+      }
+    }
+  });
+});
+
+function clearValues() {
+  tempNumber = null;
+  firstNumber = null;
+  secondNumber = null;
+  operation = null;
+  result = null;
+  resultDisplay.value = 0;
+}
+
+clearButton.addEventListener("click", function () {
+  clearValues();
+});
+
+const operatorButtons = document.querySelectorAll(".operator");
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", function (event) {
+    const thisOperation = event.target.id;
+    console.log(thisOperation);
+    if (firstNumber !== null && secondNumber === null) {
+      switch (thisOperation) {
+        case "add":
+          operation = "+";
+          break;
+        case "subtract":
+          operation = "-";
+          break;
+        case "multiply":
+          operation = "*";
+          break;
+        case "divide":
+          operation = "/";
+          break;
+      }
+      resultDisplay.value = operation;
+    }
+  });
+});
+
+equalButton.addEventListener("click", function (event) {
+  if (secondNumber !== null) {
+    switch (operation) {
+      case "+":
+        result = firstNumber + secondNumber;
+        break;
+
+      case "-":
+        result = firstNumber - secondNumber;
+        break;
+
+      case "*":
+        result = firstNumber * secondNumber;
+        break;
+
+      case "/":
+        result = firstNumber / secondNumber;
+        break;
+    }
+    resultDisplay.value = result;
+  }
+});
+
+    </script>
+</body>
+</html>
